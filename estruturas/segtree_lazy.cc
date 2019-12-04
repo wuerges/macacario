@@ -143,26 +143,26 @@ int main() {
             P = max(0, P-1);
         }
         else {
+
+            int val = 0;
             if(o==')') {
-                seg_min.update(P, N-1, 1);
-                seg_max.update(P, N-1, 1);
-                seg_sum.update(P, P, 1);
+                val++;
             }
             else if(o=='(') {
-                seg_min.update(P, N-1, -1);
-                seg_max.update(P, N-1, -1);
-                seg_sum.update(P, P, -1);
+                val--;
             }
 
             if(c=='(') {
-                seg_min.update(P, N-1, 1);
-                seg_max.update(P, N-1, 1);
-                seg_sum.update(P, P, 1);            
+                val++;
             }
             else if(c==')') {
-                seg_min.update(P, N-1, -1);
-                seg_max.update(P, N-1, -1);
-                seg_sum.update(P, P, -1);
+                val--;
+            }
+
+            if(val != 0) {
+                seg_min.update(P, N-1, val);
+                seg_max.update(P, N-1, val);
+                seg_sum.update(P, P, val);
             }
 
             o = c;
